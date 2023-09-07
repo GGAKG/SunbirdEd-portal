@@ -79,8 +79,6 @@ build_server(){
 }
 
 build_client & # run client build in background 
-
-wait
 if [ $buildDockerImage == true ]
 then
    build_server & # run server build in background
