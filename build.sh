@@ -71,10 +71,8 @@ build_server(){
     cd app_dist
     nvm use $NODE_VERSION
     echo "starting server yarn install"
-    ls
     yarn install --no-progress --production=true
     echo "completed server yarn install"
-    ls
     node helpers/resourceBundles/build.js -task="phraseAppPull"
 }
 
@@ -93,7 +91,6 @@ echo "Client and Server Build complete Took $[$BUILD_ENDTIME - $STARTTIME] secon
 if [ $buildDockerImage == true ]
 then
 cd app_dist 
-ls
 sed -i "/version/a\  \"buildHash\": \"${commit_hash}\"," package.json
 echo "starting docker build"
 docker build --no-cache --label commitHash=$(git rev-parse --short HEAD) -t ${org}/${name}:${build_tag} .
