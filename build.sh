@@ -79,9 +79,11 @@ build_server(){
 }
 
 build_client & # run client build in background 
+
+wait
 if [ $buildDockerImage == true ]
 then
-   build_server & # run client build in background
+   build_server & # run server build in background
 fi
 
 ## wait for both build to complete
@@ -92,7 +94,8 @@ echo "Client and Server Build complete Took $[$BUILD_ENDTIME - $STARTTIME] secon
 
 if [ $buildDockerImage == true ]
 then
-cd app_dist
+cd app_dist 
+ls
 sed -i "/version/a\  \"buildHash\": \"${commit_hash}\"," package.json
 echo "starting docker build"
 docker build --no-cache --label commitHash=$(git rev-parse --short HEAD) -t ${org}/${name}:${build_tag} .
