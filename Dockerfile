@@ -7,5 +7,5 @@ USER sunbird
 WORKDIR /home/sunbird/app_dist
 EXPOSE 3000
 RUN pwd && ls
-RUN npm install
+RUN yarn install
 CMD ["node", "server.js", "&"]
