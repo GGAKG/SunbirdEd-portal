@@ -1,6 +1,6 @@
 #!/bin/bash
 STARTTIME=$(date +%s)
-export PYTHON=/usr/bin/python3.7
+export PYTHON=/usr/bin/python3.10
 NODE_VERSION=16.19.0
 echo "Starting portal build from build.sh"
 set -euo pipefail	
